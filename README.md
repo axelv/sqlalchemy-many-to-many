@@ -109,6 +109,7 @@ class Report(Base):
     report_sections: Mapped[List["ReportSection"]] = relationship(
         "ReportSection", back_populates="report"
     )
+```
 
 This relationship is usefull for creating new reports:
 
