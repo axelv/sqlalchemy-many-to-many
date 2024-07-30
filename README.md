@@ -149,14 +149,15 @@ class Section(Base):
     __tablename__ = 'sections'
     id = Column(Integer, primary_key=True)
     content = Column(Text)
-    origin_report: Mapped[List["Report"]] = relationship(
+    origin_report: Mapped["Report"] = relationship(
         "Report",
         secondary='report_section',
         primaryjoin='and_(Section.id == ReportSection.section_id, ReportSection.origin == True)'
-        viewonly=True
+        viewonly=True # we don't want to write to this relationship
+        single_parent=True # only one origin report
     )
 ```
-
+Notice the `single_parent=True` argument. This is needed because SQLAlchemy can't now a section can only have one origin report. If we don't specify this, it will return a list of reports.
 This relationship is usefull for reading the origin report of a section:
 
 ```python
@@ -179,7 +180,7 @@ second_report = Report(
 session.add(second_report)
 session.commit()
 
-assert first_report.sections[0].origin_report == [first_report]
+assert first_report.sections[0].origin_report == first_report
 ```
 
 ## Source code

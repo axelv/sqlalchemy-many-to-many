@@ -36,5 +36,5 @@ def test_many_to_many(seed_db):
     assert first_report.sections[0].content == "First Section", "First section of the first report should be 'First Section'"
     assert second_report.sections[1].content == "Second Section", "Second section of the second report should be 'Second Section'"
     assert second_report.sections[2].content == "Third Section", "Third section of the second report should be 'Third Section'"
-    assert len(second_report.sections[0].origin_report) == 1, "Second report's first section should have one origin report"
-    assert second_report.sections[0].origin_report[0].id == first_report.id, "Second report's first section should be from the first report"
+    assert second_report.sections[0].origin_report is not None, "Second report's first section should have one origin report"
+    assert second_report.sections[0].origin_report.id == first_report.id, "Second report's first section should be from the first report"

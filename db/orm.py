@@ -31,10 +31,11 @@ class Section(Base):
     __tablename__ = "sections"
     id = Column(Integer, primary_key=True)
     content = Column(Text)
-    origin_report: Mapped[List[Report]] = relationship(
+    origin_report: Mapped[Report] = relationship(
         "Report",
         secondary="report_section",
         primaryjoin="and_(Section.id==ReportSection.section_id, ReportSection.origin==True)",
+        single_parent=True,
         viewonly=True,
     )
 
