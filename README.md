@@ -97,7 +97,7 @@ Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
 session = Session()
 ```
-## Add a read-write relationshipt with the association table
+## Add a relationship with the association table
 
 We can add a relationship to the `Report` model that allows us to access the section association objects.
 
