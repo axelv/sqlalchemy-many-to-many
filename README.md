@@ -157,7 +157,7 @@ class Section(Base):
         single_parent=True # only one origin report
     )
 ```
-Notice the `single_parent=True` argument. This is needed because SQLAlchemy can't now a section can only have one origin report. If we don't specify this, it will return a list of reports.
+Notice the `single_parent=True` argument. This is needed because SQLAlchemy can't know a section can only have one origin report. If we don't specify this, it will return a list of reports.
 This relationship is usefull for reading the origin report of a section:
 
 ```python
