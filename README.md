@@ -140,7 +140,7 @@ class Report(Base):
 ```
 Our model isn't smart enough to determine the correct order of the sections and the origin flag when writing. So we mark the relationship as `viewonly`.
 
-# Add a origin relationship to the section model
+# Add an origin relationship to the section model
 
 We can add a relationship to the `Section` model that allows us to access the report association objects.
 
@@ -180,7 +180,7 @@ second_report = Report(
 session.add(second_report)
 session.commit()
 
-assert first_report.sections[0].origin_report == first_report
+assert second_report.sections[0].origin_report == first_report
 ```
 
 ## Source code
